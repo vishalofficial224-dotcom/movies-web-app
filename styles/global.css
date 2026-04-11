@@ -6,20 +6,13 @@
     
 }
 
-body {
+.appClass {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.appClass {
-    margin: 20px;
     min-height: 100vh;
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    background-color: #18181b;
 
-    
 }
+

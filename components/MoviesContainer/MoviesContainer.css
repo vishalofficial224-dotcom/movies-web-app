@@ -1,0 +1,10 @@
+.all-movies {
+
+    margin: 20px;
+    min-height: 100vh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+
+}

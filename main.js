@@ -1,45 +1,51 @@
+import { search } from "./components/Search/Search.js";
+import { moviesDisplay } from "./components/MoviesContainer/MovieDisplay.js";
 import { data } from "./services/api.js";
 import { universalCard } from "./components/Card/Card.js";
-import { search } from "./components/Search/Search.js";
 
 
-const imageBaseUrl = "https://image.tmdb.org/t/p/w500"
+
 
 
 
 const app = document.getElementById('app');
+const container = moviesDisplay();
+
+
+
+
+app.appendChild(search({giveValue:takeValue}))
+app.appendChild(container)
 
 
 
 
 
+const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
-
-
+//taking data
 async function moviesData() {
-
-    const movies = await data();
-    console.log(movies)
-    moviesRender(movies)
+    const movies = await data();    
+    moviesRender(movies); 
     
 }
-
-
-
+    
+    
+    
 moviesData();
 
 
 //render movies data
 function moviesRender(movies) {
-
+    container.innerHTML = "";
     movies.forEach(element => {
         const description = moviesDescription(element.overview)
-        app.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description))
+        container.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description))
     }) 
 
 }
-
-
+    
+    
 function moviesDescription(text, wordLimit = 9) {
     let word = text.split(" ")
     if(word.length > wordLimit) {
@@ -50,3 +56,23 @@ function moviesDescription(text, wordLimit = 9) {
 
     return word;
 }
+
+
+function takeValue(value) {
+    if(value) {
+        async function moviesDataNew() {
+        const movies = await data();
+        const filterData = movies.filter(movie => movie.original_title.toLowerCase().includes(value.toLowerCase()))    
+        moviesRender(filterData); 
+    
+}
+
+    moviesDataNew();
+    }else {
+        moviesData();
+    }
+}
+
+
+
+

@@ -8,6 +8,8 @@
     /* justify-content: center; */
     align-items: center;
     border-radius: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
     
    
 }
@@ -22,8 +24,9 @@
     
 }
 
-.poster:hover {
-    
+.universal-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .movieTitle {
