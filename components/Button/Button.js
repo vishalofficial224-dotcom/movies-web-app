@@ -22,7 +22,7 @@ export function button({
     
 
 
-    buttonComponent.addEventListener("click", onClick);
+    // buttonComponent.addEventListener("click", onClick);
 
     return buttonComponent;
 
