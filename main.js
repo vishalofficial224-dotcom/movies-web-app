@@ -11,13 +11,13 @@ import { changer } from "./components/Changer/Changer.js";
 
 const app = document.getElementById('app');
 const container = moviesDisplay();
-
-
+let page = 1;
+let changeComponent = changer(page, changePage);
 
 
 app.appendChild(search({giveValue:takeValue}))
 app.appendChild(container)
-app.appendChild(changer())
+app.appendChild(changeComponent)
 
 
 
@@ -28,10 +28,10 @@ const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
 //taking data
 async function moviesData() {
-    const movies = await data();   
+    const movies = await data(page);   
     const allMovies = movies.results; 
     moviesRender(allMovies); 
-    console.log(movies.results)
+   
     
 }
     
@@ -45,7 +45,7 @@ function moviesRender(movies) {
     container.innerHTML = "";
     movies.forEach(element => {
         const description = moviesDescription(element.overview)
-        container.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description))
+        container.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description, element.id, page))
     }) 
 
 }
@@ -66,7 +66,7 @@ function moviesDescription(text, wordLimit = 9) {
 function takeValue(value) {
     if(value) {
         async function moviesDataNew() {
-        const movies = await data();
+        const movies = await data(page);
         const allMovies = movies.results; 
         const filterData = allMovies.filter(movie => movie.original_title.toLowerCase().includes(value.toLowerCase()))    
         moviesRender(filterData); 
@@ -81,4 +81,28 @@ function takeValue(value) {
 
 
 
+function changePage(e) {
+
+    if(e.target.innerHTML === 'Next') {
+        page = page + 1;
+        
+        
+    }else {
+        if(page !== 1) {
+            page = page - 1;
+            moviesData();
+        }
+        
+    }
+    update();
+    moviesData();
+
+}
+
+function update() {
+    changeComponent.remove();
+
+    changeComponent = changer(page, changePage); 
+    app.appendChild(changeComponent);
+}
 

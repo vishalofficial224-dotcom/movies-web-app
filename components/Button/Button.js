@@ -7,7 +7,7 @@ export function button({
     id = '',
     className = '',
     text = 'button',
-    onClick = 'null'
+    onClick = null
 
 } = {}) {
 
@@ -22,7 +22,7 @@ export function button({
     
 
 
-    // buttonComponent.addEventListener("click", onClick);
+    buttonComponent.addEventListener("click", onClick);
 
     return buttonComponent;
 
