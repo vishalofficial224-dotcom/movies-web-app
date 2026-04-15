@@ -22,10 +22,13 @@
     border-radius: 8px;
     background-color: #65656b;
     border: none;
-    font-size: 20px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+      font-family: "Datatype", monospace;
+
 }
 
 .span {
@@ -38,5 +41,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+      font-family: "Datatype", monospace;
+
     
 }
