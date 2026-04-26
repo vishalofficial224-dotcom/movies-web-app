@@ -8,47 +8,61 @@ import { changer } from "./components/Changer/Changer.js";
 
 
 
-
+let totalPages = 0;
 const app = document.getElementById('app');
 const container = moviesDisplay();
 let page = 1;
-let changeComponent = changer(page, changePage);
+
+
 
 
 app.appendChild(search({giveValue:takeValue}))
 app.appendChild(container)
 
-//pegination
-app.appendChild(changeComponent)
 
 
 
 
+
+let changerContainer;
 
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
 //taking data
-async function moviesData() {
+async function moviesData(page) {
     const movies = await data(page);   
-    const allMovies = movies.results; 
+    const allMovies = movies; 
     moviesRender(allMovies); 
+
+    const allPages = pegination(allMovies.total_pages);
+    
+    if(changerContainer) {
+        changerContainer.remove();
+    }
+    
+    changerContainer = changer(allPages, changePage);
+    app.appendChild(changerContainer) 
+   
+    
    
     
 }
     
     
     
-moviesData();
+moviesData(page);
 
 
 //render movies data
 function moviesRender(movies) {
     container.innerHTML = "";
-    movies.forEach(element => {
+    movies.results.forEach(element => {
         const description = moviesDescription(element.overview)
         container.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description, element.id, page))
-    }) 
+    })
+    
+    
 
 }
     
@@ -81,30 +95,13 @@ function takeValue(value) {
     }
 }
 
-
-
-function changePage(e) {
-
-    if(e.target.innerHTML === 'Next') {
-        page = page + 1;
-        
-        
-    }else {
-        if(page !== 1) {
-            page = page - 1;
-            moviesData();
-        }
-        
-    }
-    update();
-    moviesData();
+function pegination(arr) {
+    const allPages = Array.from({ length: arr }, (_, i) => i + 1);
+    return allPages; 
 
 }
 
-function update() {
-    changeComponent.remove();
-
-    changeComponent = changer(page, changePage); 
-    app.appendChild(changeComponent);
+function changePage(num) {
+    page = num;
+    moviesData(page)
 }
-

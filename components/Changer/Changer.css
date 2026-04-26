@@ -46,3 +46,27 @@
 
     
 }
+
+.page-list {
+    width: 350px;
+    /* border: 1px solid red; */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.button-pages {
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    background-color: #65656b;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+      font-family: "Datatype", monospace;
+}
