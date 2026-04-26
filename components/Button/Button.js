@@ -6,7 +6,7 @@ export function button({
     value = 'text',
     id = '',
     className = '',
-    text = 'button',
+    text = '',
     onClick = null
 
 } = {}) {

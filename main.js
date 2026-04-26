@@ -33,7 +33,7 @@ const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 async function moviesData(page) {
     const movies = await data(page);   
     const allMovies = movies; 
-    moviesRender(allMovies); 
+    moviesRender(allMovies.results); 
 
     const allPages = pegination(allMovies.total_pages);
     
@@ -57,7 +57,7 @@ moviesData(page);
 //render movies data
 function moviesRender(movies) {
     container.innerHTML = "";
-    movies.results.forEach(element => {
+    movies.forEach(element => {
         const description = moviesDescription(element.overview)
         container.appendChild(universalCard(imageBaseUrl+element.poster_path, element.original_title, description, element.id, page))
     })

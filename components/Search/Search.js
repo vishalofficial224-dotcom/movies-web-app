@@ -16,7 +16,7 @@ export function search({giveValue} = {}) {
     searchContainer.className = 'search-container';
 
     const searchInput = input({className:'search-input'});
-    const searchButton = button({className:'search-button', text:"☠", onClick:takeInput});
+    const searchButton = button({className:'search-button', onClick:takeInput});
     
 
 
@@ -97,7 +97,39 @@ export function search({giveValue} = {}) {
     svg.appendChild(text1);
 
     logoDiv.appendChild(svg);
+
     
+
+
+    
+    const searchIcon = document.createElementNS(svgNS, "svg");
+    searchIcon.setAttribute("width", "20");
+    searchIcon.setAttribute("height", "20");
+    searchIcon.setAttribute("viewBox", "0 0 24 24");
+    searchIcon.setAttribute("fill", "none");
+
+    // lens
+    const circle = document.createElementNS(svgNS, "circle");
+    circle.setAttribute("cx", "11");
+    circle.setAttribute("cy", "11");
+    circle.setAttribute("r", "7");
+    circle.setAttribute("stroke", "white");
+    circle.setAttribute("stroke-width", "2");
+
+    // handle
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", "16");
+    line.setAttribute("y1", "16");
+    line.setAttribute("x2", "21");
+    line.setAttribute("y2", "21");
+    line.setAttribute("stroke", "white");
+    line.setAttribute("stroke-width", "2");
+    line.setAttribute("stroke-linecap", "round");
+
+    searchIcon.appendChild(circle);
+    searchIcon.appendChild(line);
+
+    searchButton.appendChild(searchIcon);
     return mainDiv;
 
 }
