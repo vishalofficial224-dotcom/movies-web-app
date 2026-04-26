@@ -3,6 +3,7 @@ import { moviesDisplay } from "./components/MoviesContainer/MovieDisplay.js";
 import { data } from "./services/api.js";
 import { universalCard } from "./components/Card/Card.js";
 import { changer } from "./components/Changer/Changer.js";
+import { dataSearch } from "./services/searchApi.js";
 
 
 
@@ -82,7 +83,7 @@ function moviesDescription(text, wordLimit = 9) {
 function takeValue(value) {
     if(value) {
         async function moviesDataNew() {
-        const movies = await data(page);
+        const movies = await dataSearch(value);
         const allMovies = movies.results; 
         const filterData = allMovies.filter(movie => movie.original_title.toLowerCase().includes(value.toLowerCase()))    
         moviesRender(filterData); 
