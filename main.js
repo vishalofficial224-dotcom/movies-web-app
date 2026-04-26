@@ -17,6 +17,8 @@ let changeComponent = changer(page, changePage);
 
 app.appendChild(search({giveValue:takeValue}))
 app.appendChild(container)
+
+//pegination
 app.appendChild(changeComponent)
 
 

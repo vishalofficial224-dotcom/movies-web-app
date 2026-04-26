@@ -18,7 +18,6 @@ export function changer(value, changeFunction) {
 
 
     pageChanger.appendChild(previous)
-    pageChanger.appendChild(span)
     pageChanger.appendChild(next)
 
 
